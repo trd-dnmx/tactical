@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNMX Tactical Command — Operations Headquarters</title>
+  <meta name="description"
+    content="The elite combat division of DNMX. Forged for warfare, strategy, and battlefield supremacy. Every operation. Every victory. Every soldier." />
+  <link rel="icon" type="image/png" href="Assets/Dnmx.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-logo">TACCOM</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-text">INITIALIZING TACCOM...</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">TACCOM</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link active">HOME</a></li>
+      <li><a href="hierarchy.html" class="nav-link">HIERARCHY</a></li>
+      <li><a href="rules.html" class="nav-link">RULES</a></li>
+      <li><a href="war logs.html" class="nav-link">WAR LOGS</a></li>
+      <li><a href="memories.html" class="nav-link">MEMORIES</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-secondary" id="chatToggleButton" onclick="window.toggleChatPanel()" style="display: none;">
+        CHAT
+      </button>
+      <div id="authArea">
+        <button class="btn-secondary" id="authButton" onclick="openLoginModal()">LOG IN</button>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-nav-link active">HOME</a>
+    <a href="hierarchy.html" class="mobile-nav-link">HIERARCHY</a>
+    <a href="rules.html" class="mobile-nav-link">RULES</a>
+    <a href="war logs.html" class="mobile-nav-link">WAR LOGS</a>
+    <a href="memories.html" class="mobile-nav-link">MEMORIES</a>
+    <div id="mobileAuthArea"></div>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════
+         HERO SECTION
+    ═══════════════════════════ -->
+    <section class="hero" id="hero">
+      <!-- Layer 1: Dark gradient -->
+      <div class="hero-bg"></div>
+      <!-- Layer 2: Tactical grid -->
+      <div class="hero-grid"></div>
+      <!-- Layer 3 & 4: Particles (canvas-based, rendered by JS) -->
+      <div class="hero-particles" id="heroParticles"></div>
+      <!-- Layer 5: Scanlines -->
+      <div class="hero-scanlines"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">TACTICAL COMMAND WING</p>
+        <h1 class="hero-title">DNMX TACCOM</h1>
+        <p class="hero-subtitle">COMMAND &nbsp;•&nbsp; CONQUER &nbsp;•&nbsp; DOMINATE</p>
+        <div class="hero-divider"></div>
+        <p class="hero-desc">
+          The elite combat division of Dnmx.<br />
+          Forged for warfare, strategy, and battlefield supremacy.<br />
+          Every operation. Every victory. Every soldier.
+        </p>
+        <div class="hero-ctas">
+          <a href="hierarchy.html" class="btn-primary"><span>VIEW HIERARCHY</span></a>
+          <a href="war logs.html" class="btn-secondary">WAR LOGS</a>
+          <a href="https://trd-dnmx.github.io/central" class="btn-tertiary" target="_blank" rel="noopener">CENTCOM</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-mouse"></div>
+        <span>SCROLL</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         CORE TACTICAL PRINCIPLES
+    ═══════════════════════════ -->
+    <section class="principles-section" id="principles">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Our Foundation</p>
+        <h2 class="section-title">Core Tactical Principles</h2>
+        <p class="section-subtitle">The ideals that shape every operation conducted under Tactical Command.</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="principles-grid">
+
+        <!-- Discipline -->
+        <div class="principle-card reveal">
+          <div class="principle-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="2" x2="12" y2="6" />
+              <line x1="12" y1="18" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="6" y2="12" />
+              <line x1="18" y1="12" x2="22" y2="12" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="12" cy="12" r="1" fill="currentColor" />
+            </svg>
+          </div>
+          <h3 class="principle-name">Discipline</h3>
+          <p class="principle-desc">Every member follows leadership, maintains professionalism, and acts with precision
+            during every engagement.</p>
+        </div>
+
+        <!-- Loyalty -->
+        <div class="principle-card reveal">
+          <div class="principle-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3 class="principle-name">Loyalty</h3>
+          <p class="principle-desc">Absolute commitment to Dnmx and fellow members. Unity always comes before personal
+            gain.</p>
+        </div>
+
+        <!-- Strategy -->
+        <div class="principle-card reveal">
+          <div class="principle-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 17.5L3 6V3h3l11.5 11.5" />
+              <path d="M13 7L8.5 2.5l-1 1L12 8" />
+              <path d="M7.5 13.5L2 19v2h2l5.5-5.5" />
+              <path d="M22 22l-5-5" />
+              <path d="M17 22l5-5" />
+            </svg>
+          </div>
+          <h3 class="principle-name">Strategy</h3>
+          <p class="principle-desc">Victory is achieved through planning, coordination, and intelligent battlefield
+            decisions—not reckless fighting.</p>
+        </div>
+
+        <!-- Honor -->
+        <div class="principle-card reveal">
+          <div class="principle-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+              <line x1="4" y1="22" x2="4" y2="15" />
+            </svg>
+          </div>
+          <h3 class="principle-name">Honor</h3>
+          <p class="principle-desc">Win with integrity. Respect allies, respect enemies, and uphold the reputation of
+            Dnmx everywhere.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         WHY JOIN TACCOM
+    ═══════════════════════════ -->
+    <section class="why-section" id="whyJoin">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Join the Fight</p>
+        <h2 class="section-title">Why Join TACCOM</h2>
+        <p class="section-subtitle">Become part of a disciplined tactical force built on teamwork, leadership, and
+          battlefield excellence.</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="why-grid">
+
+        <div class="why-card reveal">
+          <div class="why-card-icon">🎯</div>
+          <h4>Tactical Leadership</h4>
+          <p>Learn under experienced battlefield commanders and improve your strategic gameplay.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="why-card-icon">⚔️</div>
+          <h4>Organized Warfare</h4>
+          <p>Participate in structured wars with proper leadership, communication, and tactical planning.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="why-card-icon">🤝</div>
+          <h4>Active Community</h4>
+          <p>Join an active group of members who work together every day to strengthen the clan.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="why-card-icon">🏆</div>
+          <h4>Competitive Environment</h4>
+          <p>Challenge yourself alongside skilled players and continuously improve your PvP abilities.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="why-card-icon">⭐</div>
+          <h4>Recognition</h4>
+          <p>Progress through the hierarchy based on loyalty, activity, teamwork, and battlefield performance.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="why-card-icon">🔥</div>
+          <h4>Brotherhood</h4>
+          <p>More than just a clan, TACCOM is a close-knit team where every victory is shared together.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════
+         ANNOUNCEMENTS PREVIEW
+    ═══════════════════════════ -->
+    <section class="announcements-preview" id="announcementsPreview">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Intel Briefing</p>
+        <h2 class="section-title">Latest Announcements</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="announce-preview-grid" id="homeAnnouncementsGrid">
+        <!-- Populated by JS — shows skeleton loaders initially -->
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+      </div>
+
+      <div class="announce-view-all reveal">
+        <button class="btn-secondary" onclick="openAnnouncementsOverlay()">VIEW ALL ANNOUNCEMENTS</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════
+       FOOTER
+  ═══════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">TACCOM</div>
+        <p>The tactical operations wing of DNMX. Forged for warfare, strategy, and battlefield supremacy.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="hierarchy.html">Hierarchy</a>
+        <a href="rules.html">Rules</a>
+        <a href="war logs.html">War Logs</a>
+        <a href="memories.html">Memories</a>
+      </div>
+      <div class="footer-column">
+        <h4>DNMX Network</h4>
+        <a href="https://trd-dnmx.github.io/central" target="_blank" rel="noopener">Central Command</a>
+        <a href="index.html" class="current-page">Tactical Command</a>
+      </div>
+      <div class="footer-column">
+        <h4>Connect</h4>
+        <a href="#" aria-label="Discord">Discord</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+        <a href="#" aria-label="Twitter">Twitter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DNMX Tactical Command — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════
+       CHAT PANEL
+  ═══════════════════════════ -->
+  <div id="chatPanel" class="chat-panel">
+    <!-- User List View -->
+    <div id="chatUserListContainer" class="chat-view-container">
+      <div class="chat-header">
+        <h3 class="chat-title">TACCOM CHAT</h3>
+        <button class="chat-close-btn" onclick="window.toggleChatPanel()" aria-label="Close chat">✕</button>
+      </div>
+      <div class="chat-user-list" id="chatUserList">
+        <!-- Users populated dynamically -->
+      </div>
+    </div>
+    <!-- Chat Room View -->
+    <div id="chatRoomContainer" class="chat-view-container" style="display: none;">
+      <div class="chat-header">
+        <button class="chat-back-btn" onclick="window.goBackToUserList()" aria-label="Go back">←</button>
+        <div class="chat-header-info">
+          <h4 id="chatRoomHeaderName" class="chat-active-username">Username</h4>
+          <div id="chatRoomHeaderStatus" class="chat-active-status">Online</div>
+        </div>
+        <button class="chat-close-btn" onclick="window.toggleChatPanel()" aria-label="Close chat">✕</button>
+      </div>
+      <div class="chat-messages" id="chatMessagesBody">
+        <!-- Messages populated dynamically -->
+      </div>
+      <div id="chatTypingIndicator" class="chat-typing-indicator" style="display: none;">
+        <span id="chatTypingText"></span>
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div id="chatMediaPreview" class="chat-media-preview" style="display: none;">
+        <img id="chatMediaPreviewImg" src="" alt="Media preview" />
+        <button class="remove-preview" onclick="window.removeChatMedia()">✕</button>
+      </div>
+      <div class="chat-input-area">
+        <textarea id="chatMessageInput" placeholder="Write a message..." rows="1"
+          onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); window.sendChatMessage(); }"
+          oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px'; window.handleTypingInput();"></textarea>
+        <button class="btn-primary chat-send-btn" onclick="window.sendChatMessage()"><span>SEND</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       MODAL
+  ═══════════════════════════ -->
+  <div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close modal">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════
+       ANNOUNCEMENTS OVERLAY
+  ═══════════════════════════ -->
+  <div class="modal-overlay" id="announcementsOverlay" onclick="closeAnnouncementsOnOverlay(event)">
+    <div class="modal" style="max-width: 900px;">
+      <button class="modal-close" onclick="closeAnnouncementsOverlay()" aria-label="Close announcements">✕</button>
+      <div id="announcementsOverlayContent"></div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- OFFLINE BANNER -->
+  <div class="offline-banner" id="offlineBanner">
+    Connection Lost — Some features may be unavailable.
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)" aria-label="Previous">‹</button>
+    <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)" aria-label="Next">›</button>
+    <div class="lightbox-content" id="lightboxContent"></div>
+  </div>
+
+  <!-- FIREBASE -->
+  <script type="module" src="scripts.js"></script>
+
+</body>
+
+</html>

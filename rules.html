@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rulebook — DNMX Tactical Command</title>
+  <meta name="description"
+    content="Discipline, respect, and teamwork are the foundation of every successful operation. Read the official DNMX TACCOM rulebook." />
+  <link rel="icon" type="image/png" href="Assets/Dnmx.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-logo">TACCOM</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-text">INITIALIZING TACCOM...</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">TACCOM</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">HOME</a></li>
+      <li><a href="hierarchy.html" class="nav-link">HIERARCHY</a></li>
+      <li><a href="rules.html" class="nav-link active">RULES</a></li>
+      <li><a href="war logs.html" class="nav-link">WAR LOGS</a></li>
+      <li><a href="memories.html" class="nav-link">MEMORIES</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-secondary" id="chatToggleButton" onclick="window.toggleChatPanel()"
+        style="display: none;">CHAT</button>
+      <div id="authArea">
+        <button class="btn-secondary" id="authButton" onclick="openLoginModal()">LOG IN</button>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-nav-link">HOME</a>
+    <a href="hierarchy.html" class="mobile-nav-link">HIERARCHY</a>
+    <a href="rules.html" class="mobile-nav-link active">RULES</a>
+    <a href="war logs.html" class="mobile-nav-link">WAR LOGS</a>
+    <a href="memories.html" class="mobile-nav-link">MEMORIES</a>
+    <div id="mobileAuthArea"></div>
+  </div>
+
+  <main>
+
+    <!-- PAGE HEADER -->
+    <div class="page-hero">
+      <div class="page-hero-bg"></div>
+      <div class="page-hero-grid"></div>
+      <div class="page-hero-content">
+        <span class="page-hero-tag">TACTICAL COMMAND</span>
+        <h1 class="page-hero-title">Rulebook</h1>
+        <p class="page-hero-subtitle">Discipline, respect, and teamwork are the foundation of every successful
+          operation. Every member is expected to understand and follow the rules below.</p>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div style="max-width:1300px;margin:0 auto;padding:0 40px;">
+      <div class="search-wrap" style="max-width:100%;margin-bottom:24px;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="rulesSearch" placeholder="Search rules..." aria-label="Search rules" />
+      </div>
+    </div>
+
+    <!-- MOBILE TOC -->
+    <div style="max-width:1300px;margin:0 auto;padding:0 40px;">
+      <div class="rules-toc-mobile">
+        <button class="rules-toc-toggle" id="rulesTocToggle">
+          TABLE OF CONTENTS
+          <span>▾</span>
+        </button>
+        <div class="rules-toc-dropdown" id="rulesTocDropdown">
+          <a href="#community-rules">Community Rules</a>
+          <a href="#pvp-war">PvP & War Guidelines</a>
+          <a href="#behaviour">Behaviour</a>
+          <a href="#recruitment">Recruitment</a>
+          <a href="#loyalty-security">Loyalty & Security</a>
+          <a href="#clan-diplomacy">Clan Diplomacy</a>
+          <a href="#development">Development</a>
+          <a href="#attendance">Attendance</a>
+          <a href="#chat-rules">Chat Rules</a>
+          <a href="#doxxing-policy">Doxxing Policy</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RULES CONTENT -->
+    <div class="rules-section">
+
+      <!-- DESKTOP TOC -->
+      <aside class="rules-toc">
+        <div class="rules-toc-title">Contents</div>
+        <a href="#community-rules" class="active">Community Rules</a>
+        <a href="#pvp-war">PvP & War Guidelines</a>
+        <a href="#behaviour">Behaviour</a>
+        <a href="#recruitment">Recruitment</a>
+        <a href="#loyalty-security">Loyalty & Security</a>
+        <a href="#clan-diplomacy">Clan Diplomacy</a>
+        <a href="#development">Development</a>
+        <a href="#attendance">Attendance</a>
+        <a href="#chat-rules">Chat Rules</a>
+        <a href="#doxxing-policy">Doxxing Policy</a>
+      </aside>
+
+      <!-- RULES CARDS -->
+      <div class="rules-content">
+
+        <!-- COMMUNITY RULES -->
+        <div class="rule-category reveal" id="community-rules">
+          <h2 class="rule-category-title">Community Rules</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">🤝</div>
+              <div class="rule-item-text">
+                <h4>Respect All Members</h4>
+                <p>Treat every member with dignity and respect regardless of rank. Harassment, bullying, or
+                  discrimination of any kind will not be tolerated.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">📋</div>
+              <div class="rule-item-text">
+                <h4>Follow the Chain of Command</h4>
+                <p>Respect the hierarchy. Report issues to your direct superior before escalating. Do not bypass the
+                  chain of command without good reason.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🎭</div>
+              <div class="rule-item-text">
+                <h4>Represent DNMX with Honor</h4>
+                <p>When interacting with other clans or communities, you represent DNMX. Maintain professionalism and
+                  never bring shame to the organization.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">⚖️</div>
+              <div class="rule-item-text">
+                <h4>Accept Leadership Decisions</h4>
+                <p>Decisions made by leadership are final. If you disagree, voice your concerns respectfully through
+                  proper channels, not publicly.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PVP & WAR GUIDELINES -->
+        <div class="rule-category reveal" id="pvp-war">
+          <h2 class="rule-category-title">PvP & War Guidelines</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">⚔️</div>
+              <div class="rule-item-text">
+                <h4>Follow War Leadership</h4>
+                <p>During wars, follow the designated War Leader's instructions without question. Coordination wins
+                  battles, not individual heroics.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🎯</div>
+              <div class="rule-item-text">
+                <h4>Minimum Combat Engagement</h4>
+                <p>All members are expected to participate in wars when called upon. Consistent absence without notice
+                  may result in demotion.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">📸</div>
+              <div class="rule-item-text">
+                <h4>War Screenshots</h4>
+                <p>Take screenshots during wars when possible. These serve as evidence for war logs and help document
+                  our operational history.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🚫</div>
+              <div class="rule-item-text">
+                <h4>Avoid Fake Claims</h4>
+                <p>Never fabricate war results or exaggerate performance. Dishonesty undermines the integrity of the
+                  entire organization.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🔔</div>
+              <div class="rule-item-text">
+                <h4>Ping Responsibility</h4>
+                <p>Respond to war pings promptly. If you cannot attend, notify leadership as early as possible so
+                  replacements can be arranged.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- WAR PREPARATION CHECKLIST -->
+          <div class="checklist-panel">
+            <h4>WAR PREPARATION CHECKLIST</h4>
+            <div class="checklist-item">
+              <div class="check-box"></div> Confirm War Leader
+            </div>
+            <div class="checklist-item">
+              <div class="check-box"></div> Create Group Party
+            </div>
+            <div class="checklist-item">
+              <div class="check-box"></div> Invite Fighters
+            </div>
+            <div class="checklist-item">
+              <div class="check-box"></div> Select Pot Location
+            </div>
+            <div class="checklist-item">
+              <div class="check-box"></div> Ensure Potters Present
+            </div>
+            <div class="checklist-item">
+              <div class="check-box"></div> Check Lag
+            </div>
+          </div>
+        </div>
+
+        <!-- BEHAVIOUR -->
+        <div class="rule-category reveal" id="behaviour">
+          <h2 class="rule-category-title">Behaviour</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">💬</div>
+              <div class="rule-item-text">
+                <h4>Maintain Maturity</h4>
+                <p>Act maturely at all times. Childish behaviour, excessive drama, and attention-seeking will not be
+                  tolerated within TACCOM.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🔇</div>
+              <div class="rule-item-text">
+                <h4>No Toxic Behaviour</h4>
+                <p>Toxicity in any form — whether towards members, allies, or enemies — is strictly prohibited. Compete
+                  with honor.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🛑</div>
+              <div class="rule-item-text">
+                <h4>No Abuse of Power</h4>
+                <p>Higher-ranked members must never abuse their authority. Leadership is a responsibility, not a
+                  privilege for personal gain.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECRUITMENT -->
+        <div class="rule-category reveal" id="recruitment">
+          <h2 class="rule-category-title">Recruitment</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">📝</div>
+              <div class="rule-item-text">
+                <h4>Authorized Recruitment Only</h4>
+                <p>Only designated members may recruit on behalf of TACCOM. Unauthorized recruitment may misrepresent
+                  the organization.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">✅</div>
+              <div class="rule-item-text">
+                <h4>Vet Before Inviting</h4>
+                <p>Potential recruits should be evaluated for activity, attitude, and willingness to follow rules before
+                  being invited.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOYALTY & SECURITY -->
+        <div class="rule-category reveal" id="loyalty-security">
+          <h2 class="rule-category-title">Loyalty & Security</h2>
+          <div class="rule-items">
+            <div class="rule-item important">
+              <div class="rule-item-icon warning">⚠️</div>
+              <div class="rule-item-text">
+                <h4>No Information Leaks</h4>
+                <p>Sharing internal DNMX strategies, plans, war tactics, or private discussions with outsiders is
+                  considered treason and will result in immediate removal.</p>
+              </div>
+            </div>
+            <div class="rule-item important">
+              <div class="rule-item-icon warning">🔒</div>
+              <div class="rule-item-text">
+                <h4>Clan Loyalty</h4>
+                <p>DNMX members must remain loyal to the organization. Joining enemy clans, spying, or working against
+                  DNMX interests is grounds for permanent exile.</p>
+              </div>
+            </div>
+            <div class="rule-item important">
+              <div class="rule-item-icon warning">🛡️</div>
+              <div class="rule-item-text">
+                <h4>Protect Clan Secrets</h4>
+                <p>War plans, internal conflicts, leadership discussions, and strategic decisions must never be shared
+                  outside the organization.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLAN DIPLOMACY -->
+        <div class="rule-category reveal" id="clan-diplomacy">
+          <h2 class="rule-category-title">Clan Diplomacy</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">🤝</div>
+              <div class="rule-item-text">
+                <h4>Respect Allied Clans</h4>
+                <p>Allies are treated with the same respect as DNMX members. Do not provoke, insult, or engage in
+                  conflict with allied organizations.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🕊️</div>
+              <div class="rule-item-text">
+                <h4>No Unauthorized Negotiations</h4>
+                <p>Only leadership may negotiate alliances, truces, or diplomatic agreements with other clans. Members
+                  should not make promises on behalf of DNMX.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEVELOPMENT -->
+        <div class="rule-category reveal" id="development">
+          <h2 class="rule-category-title">Development</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">📈</div>
+              <div class="rule-item-text">
+                <h4>Continuous Improvement</h4>
+                <p>All members are expected to continuously improve their skills, knowledge, and contributions to the
+                  organization.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🎓</div>
+              <div class="rule-item-text">
+                <h4>Help Train Others</h4>
+                <p>Experienced members should help newer members improve. Sharing knowledge strengthens the entire
+                  organization.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ATTENDANCE -->
+        <div class="rule-category reveal" id="attendance">
+          <h2 class="rule-category-title">Attendance</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">📅</div>
+              <div class="rule-item-text">
+                <h4>Be Active</h4>
+                <p>Members are expected to maintain reasonable activity. Extended inactivity without notice may result
+                  in demotion or removal.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">📩</div>
+              <div class="rule-item-text">
+                <h4>Notify Before Absence</h4>
+                <p>If you need to take a break, inform your superiors. Unexplained absences during war periods are taken
+                  seriously.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAT RULES -->
+        <div class="rule-category reveal" id="chat-rules">
+          <h2 class="rule-category-title">Chat Rules</h2>
+          <div class="rule-items">
+            <div class="rule-item">
+              <div class="rule-item-icon">🚫</div>
+              <div class="rule-item-text">
+                <h4>No Spam</h4>
+                <p>Avoid excessive messages, repeated text, or flooding channels with unnecessary content.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🔞</div>
+              <div class="rule-item-text">
+                <h4>No Explicit Language</h4>
+                <p>Keep language clean and appropriate. Excessive profanity or vulgar content is not tolerated.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">⛔</div>
+              <div class="rule-item-text">
+                <h4>No Gore or Disturbing Content</h4>
+                <p>Do not share graphic, violent, or disturbing images or videos in any channel.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🖼️</div>
+              <div class="rule-item-text">
+                <h4>No Offensive GIFs</h4>
+                <p>GIFs and images must not contain offensive, discriminatory, or inappropriate content.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-item-icon">🔗</div>
+              <div class="rule-item-text">
+                <h4>No Link Spam</h4>
+                <p>Do not spam links, advertisements, or self-promotions without permission from leadership.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOXXING POLICY -->
+        <div class="rule-category reveal" id="doxxing-policy">
+          <h2 class="rule-category-title">Doxxing Policy</h2>
+          <div class="rule-items">
+            <div class="rule-item important">
+              <div class="rule-item-icon warning">🚨</div>
+              <div class="rule-item-text">
+                <h4>Zero Tolerance for Doxxing</h4>
+                <p>Sharing, threatening to share, or attempting to obtain anyone's personal information (real name,
+                  address, phone number, photos, school, workplace, etc.) is an immediate and permanent ban from DNMX
+                  with no exceptions. This applies to members, allies, and enemies alike.</p>
+              </div>
+            </div>
+            <div class="rule-item important">
+              <div class="rule-item-icon warning">📢</div>
+              <div class="rule-item-text">
+                <h4>Report Doxxing Immediately</h4>
+                <p>If you witness or receive any doxxing threats, report them to leadership immediately. Your safety and
+                  privacy are a top priority.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">TACCOM</div>
+        <p>The tactical operations wing of DNMX. Forged for warfare, strategy, and battlefield supremacy.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="hierarchy.html">Hierarchy</a>
+        <a href="rules.html">Rules</a>
+        <a href="war logs.html">War Logs</a>
+        <a href="memories.html">Memories</a>
+      </div>
+      <div class="footer-column">
+        <h4>DNMX Network</h4>
+        <a href="https://trd-dnmx.github.io/central" target="_blank" rel="noopener">Central Command</a>
+        <a href="index.html" class="current-page">Tactical Command</a>
+      </div>
+      <div class="footer-column">
+        <h4>Connect</h4>
+        <a href="#">Discord</a>
+        <a href="#">YouTube</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DNMX Tactical Command — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- CHAT PANEL -->
+  <div id="chatPanel" class="chat-panel">
+    <div id="chatUserListContainer" class="chat-view-container">
+      <div class="chat-header">
+        <h3 class="chat-title">TACCOM CHAT</h3>
+        <button class="chat-close-btn" onclick="window.toggleChatPanel()">✕</button>
+      </div>
+      <div class="chat-user-list" id="chatUserList"></div>
+    </div>
+    <div id="chatRoomContainer" class="chat-view-container" style="display: none;">
+      <div class="chat-header">
+        <button class="chat-back-btn" onclick="window.goBackToUserList()">←</button>
+        <div class="chat-header-info">
+          <h4 id="chatRoomHeaderName" class="chat-active-username">Username</h4>
+          <div id="chatRoomHeaderStatus" class="chat-active-status">Online</div>
+        </div>
+        <button class="chat-close-btn" onclick="window.toggleChatPanel()">✕</button>
+      </div>
+      <div class="chat-messages" id="chatMessagesBody"></div>
+      <div id="chatTypingIndicator" class="chat-typing-indicator" style="display: none;">
+        <span id="chatTypingText"></span>
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div id="chatMediaPreview" class="chat-media-preview" style="display: none;">
+        <img id="chatMediaPreviewImg" src="" alt="" />
+        <button class="remove-preview" onclick="window.removeChatMedia()">✕</button>
+      </div>
+      <div class="chat-input-area">
+        <textarea id="chatMessageInput" placeholder="Write a message..." rows="1"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();window.sendChatMessage();}"
+          oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px';window.handleTypingInput();"></textarea>
+        <button class="btn-primary chat-send-btn" onclick="window.sendChatMessage()"><span>SEND</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="scripts.js"></script>
+</body>
+
+</html>

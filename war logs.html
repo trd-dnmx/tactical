@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>War Logs — DNMX Tactical Command</title>
+  <meta name="description"
+    content="Every operation recorded. Browse the official DNMX Tactical Command war archives documenting victories and battles." />
+  <link rel="icon" type="image/png" href="Assets/Dnmx.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-logo">TACCOM</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-text">INITIALIZING TACCOM...</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">TACCOM</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">HOME</a></li>
+      <li><a href="hierarchy.html" class="nav-link">HIERARCHY</a></li>
+      <li><a href="rules.html" class="nav-link">RULES</a></li>
+      <li><a href="war logs.html" class="nav-link active">WAR LOGS</a></li>
+      <li><a href="memories.html" class="nav-link">MEMORIES</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-secondary" id="chatToggleButton" onclick="window.toggleChatPanel()"
+        style="display: none;">CHAT</button>
+      <div id="authArea">
+        <button class="btn-secondary" id="authButton" onclick="openLoginModal()">LOG IN</button>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-nav-link">HOME</a>
+    <a href="hierarchy.html" class="mobile-nav-link">HIERARCHY</a>
+    <a href="rules.html" class="mobile-nav-link">RULES</a>
+    <a href="war logs.html" class="mobile-nav-link active">WAR LOGS</a>
+    <a href="memories.html" class="mobile-nav-link">MEMORIES</a>
+    <div id="mobileAuthArea"></div>
+  </div>
+
+  <main>
+
+    <!-- PAGE HEADER -->
+    <div class="page-hero">
+      <div class="page-hero-bg"></div>
+      <div class="page-hero-grid"></div>
+      <div class="page-hero-content">
+        <span class="page-hero-tag">OPERATION ARCHIVES</span>
+        <h1 class="page-hero-title">War Logs</h1>
+        <p class="page-hero-subtitle">The official record of every tactical engagement fought under the DNMX banner.
+          Every victory celebrated, every battle documented.</p>
+      </div>
+    </div>
+
+    <!-- WAR LOGS SECTION -->
+    <div class="warlogs-section">
+
+      <!-- CONTROLS -->
+      <div class="warlogs-controls">
+        <div class="search-wrap" style="flex:1;min-width:200px;">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="warLogSearch" placeholder="Search war logs..." aria-label="Search war logs" />
+        </div>
+        <div class="filter-chips" id="warLogFilters">
+          <button class="chip active" data-filter="all" onclick="setWarLogFilter('all')">ALL</button>
+          <button class="chip" data-filter="won" onclick="setWarLogFilter('won')">WON</button>
+          <button class="chip" data-filter="lost" onclick="setWarLogFilter('lost')">LOST</button>
+        </div>
+      </div>
+
+      <!-- WAR LOGS GRID -->
+      <div class="warlogs-grid" id="warLogsGrid">
+        <!-- Skeleton loaders -->
+        <div class="skeleton skeleton-card" style="height:280px;"></div>
+        <div class="skeleton skeleton-card" style="height:280px;"></div>
+        <div class="skeleton skeleton-card" style="height:280px;"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FAB (Admin Only) -->
+  <div class="fab">
+    <button onclick="openCreateWarLogModal()">+ CREATE LOG</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">TACCOM</div>
+        <p>The tactical operations wing of DNMX. Forged for warfare, strategy, and battlefield supremacy.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="hierarchy.html">Hierarchy</a>
+        <a href="rules.html">Rules</a>
+        <a href="war logs.html">War Logs</a>
+        <a href="memories.html">Memories</a>
+      </div>
+      <div class="footer-column">
+        <h4>DNMX Network</h4>
+        <a href="https://trd-dnmx.github.io/central" target="_blank" rel="noopener">Central Command</a>
+        <a href="index.html" class="current-page">Tactical Command</a>
+      </div>
+      <div class="footer-column">
+        <h4>Connect</h4>
+        <a href="#">Discord</a>
+        <a href="#">YouTube</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DNMX Tactical Command — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- CHAT PANEL -->
+  <div id="chatPanel" class="chat-panel">
+    <div id="chatUserListContainer" class="chat-view-container">
+      <div class="chat-header">
+        <h3 class="chat-title">TACCOM CHAT</h3>
+        <button class="chat-close-btn" onclick="window.toggleChatPanel()">✕</button>
+      </div>
+      <div class="chat-user-list" id="chatUserList"></div>
+    </div>
+    <div id="chatRoomContainer" class="chat-view-container" style="display: none;">
+      <div class="chat-header">
+        <button class="chat-back-btn" onclick="window.goBackToUserList()">←</button>
+        <div class="chat-header-info">
+          <h4 id="chatRoomHeaderName" class="chat-active-username">Username</h4>
+          <div id="chatRoomHeaderStatus" class="chat-active-status">Online</div>
+        </div>
+        <button class="chat-close-btn" onclick="window.toggleChatPanel()">✕</button>
+      </div>
+      <div class="chat-messages" id="chatMessagesBody"></div>
+      <div id="chatTypingIndicator" class="chat-typing-indicator" style="display: none;">
+        <span id="chatTypingText"></span>
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div id="chatMediaPreview" class="chat-media-preview" style="display: none;">
+        <img id="chatMediaPreviewImg" src="" alt="" />
+        <button class="remove-preview" onclick="window.removeChatMedia()">✕</button>
+      </div>
+      <div class="chat-input-area">
+        <textarea id="chatMessageInput" placeholder="Write a message..." rows="1"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();window.sendChatMessage();}"
+          oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px';window.handleTypingInput();"></textarea>
+        <button class="btn-primary chat-send-btn" onclick="window.sendChatMessage()"><span>SEND</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="scripts.js"></script>
+</body>
+
+</html>
