@@ -46,7 +46,7 @@ const ADMIN_EMAILS = [
 ];
 
 function isAdmin() {
-  return CURRENT_USER && ADMIN_EMAILS.includes(CURRENT_USER.email.trim());
+  return CURRENT_USER && ADMIN_EMAILS.includes(CURRENT_USER.email.trim().toLowerCase());
 }
 
 // ═════════════════════════════════════=
@@ -513,27 +513,27 @@ function updateAuthUI() {
 
   if (CURRENT_USER) {
     const avatarHTML = getAuthorDotHTML(CURRENT_USER.photoURL, CURRENT_USER.initials || 'UN', "width: 24px; height: 24px; font-size: 0.6rem; margin: 0;");
-    const pfpHTML = `<div onclick="promptProfileSetupModal()" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; ${CURRENT_USER.photoURL ? 'border: 1px solid var(--accent);' : ''}">${avatarHTML}</div>`;
+    const pfpHTML = `<div onclick="window.promptProfileSetupModal()" style="cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; ${CURRENT_USER.photoURL ? 'border: 1px solid var(--accent);' : ''}">${avatarHTML}</div>`;
 
     area.innerHTML = `
       <div style="display:flex;gap:8px;align-items:center">
         ${pfpHTML}
-        <button class="btn-secondary" onclick="promptProfileSetupModal()">PROFILE</button>
-        <button class="btn-secondary" onclick="signOutUser()">LOG OUT</button>
+        <button class="btn-secondary" onclick="window.promptProfileSetupModal()">PROFILE</button>
+        <button class="btn-secondary" onclick="window.signOutUser()">LOG OUT</button>
       </div>`;
 
     if (mobileArea) {
       mobileArea.innerHTML = `
-        <button class="btn-secondary" onclick="window.toggleChatPanel(); closeMobile();" style="width: 100%;">CHAT</button>
-        <button class="btn-secondary" onclick="promptProfileSetupModal(); closeMobile();" style="width: 100%;">PROFILE</button>
-        <button class="btn-secondary" onclick="signOutUser(); closeMobile();" style="width: 100%;">LOG OUT</button>`;
+        <button class="btn-secondary" onclick="window.toggleChatPanel(); window.closeMobile();" style="width: 100%;">CHAT</button>
+        <button class="btn-secondary" onclick="window.promptProfileSetupModal(); window.closeMobile();" style="width: 100%;">PROFILE</button>
+        <button class="btn-secondary" onclick="window.signOutUser(); window.closeMobile();" style="width: 100%;">LOG OUT</button>`;
     }
 
     if (chatToggle) chatToggle.style.display = '';
   } else {
-    area.innerHTML = `<button class="btn-secondary" id="authButton" onclick="openLoginModal()">LOG IN</button>`;
+    area.innerHTML = `<button class="btn-secondary" id="authButton" onclick="window.openLoginModal()">LOG IN</button>`;
     if (mobileArea) {
-      mobileArea.innerHTML = `<button class="btn-secondary" onclick="openLoginModal(); closeMobile();" style="width: 100%;">LOG IN</button>`;
+      mobileArea.innerHTML = `<button class="btn-secondary" onclick="window.openLoginModal(); window.closeMobile();" style="width: 100%;">LOG IN</button>`;
     }
     if (chatToggle) chatToggle.style.display = 'none';
     closeChatPanel();
@@ -1250,8 +1250,8 @@ function openCreateWarLogModal() {
     <form id="warLogForm" onsubmit="publishWarLog(event)">
       <label>Outcome</label>
       <div class="outcome-toggle" id="outcomeToggle">
-        <button type="button" class="active-won" onclick="setOutcome('won')">WON</button>
-        <button type="button" onclick="setOutcome('lost')">LOST</button>
+        <button type="button" class="active-won" onclick="window.setOutcome('won')">WON</button>
+        <button type="button" onclick="window.setOutcome('lost')">LOST</button>
       </div>
       <input type="hidden" id="warLogOutcome" value="won" />
 
@@ -1373,8 +1373,8 @@ function openEditWarLogModal(id) {
     <form id="editWarLogForm" onsubmit="updateWarLog(event, '${id}')">
       <label>Outcome</label>
       <div class="outcome-toggle" id="outcomeToggle">
-        <button type="button" class="${(w.outcome || '') === 'won' ? 'active-won' : ''}" onclick="setOutcome('won')">WON</button>
-        <button type="button" class="${(w.outcome || '') === 'lost' ? 'active-lost' : ''}" onclick="setOutcome('lost')">LOST</button>
+        <button type="button" class="${(w.outcome || '') === 'won' ? 'active-won' : ''}" onclick="window.setOutcome('won')">WON</button>
+        <button type="button" class="${(w.outcome || '') === 'lost' ? 'active-lost' : ''}" onclick="window.setOutcome('lost')">LOST</button>
       </div>
       <input type="hidden" id="warLogOutcome" value="${w.outcome || 'won'}" />
 
