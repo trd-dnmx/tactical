@@ -41,6 +41,8 @@ const ADMIN_EMAILS = [
   "tk.dnmx@gmail.com",
   "deriddercasper@gmail.com",
   "trigyapazare2013@gmail.com",
+  "ibrahimjafri1111@gmail.com",
+  "jproskies@gmail.com",
 ];
 
 function isAdmin() {
