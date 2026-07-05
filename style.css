@@ -470,19 +470,22 @@ main {
   font-weight: 700;
   padding: 15px 36px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  opacity: 0.8;
 }
 
 .btn-tertiary:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: rgba(50, 201, 107, 0.05);
+  opacity: 1;
+  color: var(--accent-bright);
+  border-color: var(--accent-bright);
+  background: rgba(50, 201, 107, 0.1);
+  box-shadow: 0 0 25px rgba(50, 201, 107, 0.3);
   transform: translateY(-2px);
 }
 
@@ -1170,7 +1173,7 @@ main {
 
 .rank-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
 
@@ -2834,16 +2837,38 @@ footer {
   transform: translateY(0);
 }
 
-/* ── SCROLL REVEAL ── */
+/* ── SCROLL REVEAL (Disabled for instant smooth rendering) ── */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 1;
+  transform: none;
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* ── SMOOTH CSS FLOATING PARTICLES ── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: float linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-20px) scale(1);
+    opacity: 0;
+  }
 }
 
 /* ── RESPONSIVE ── */

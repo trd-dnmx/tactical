@@ -10,7 +10,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, updateDoc, doc, serverTimestamp, query, orderBy, getDoc, getDocs, setDoc, where, limit } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, updateDoc, doc, serverTimestamp, query, orderBy, getDoc, getDocs, setDoc, where, limit, or } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -130,117 +130,27 @@ if (scrollIndicator) {
 // ═════════════════════════════════════=
 //  CANVAS PARTICLE SYSTEM
 // ═════════════════════════════════════=
-function initParticles() {
+function spawnParticles() {
   const container = document.getElementById('heroParticles');
   if (!container) return;
-
-  const canvas = document.createElement('canvas');
-  container.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-
-  let particles = [];
-  const PARTICLE_COUNT = 60;
-
-  function resize() {
-    canvas.width = container.offsetWidth;
-    canvas.height = container.offsetHeight;
+  for (let i = 0; i < 35; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3.5 + 1;
+    const x = Math.random() * 100;
+    const dur = Math.random() * 14 + 7;
+    const delay = Math.random() * 8;
+    const isBrightGreen = Math.random() > 0.4;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${x}%;bottom:0;
+      background:${isBrightGreen ? 'rgba(50, 201, 107, 0.6)' : 'rgba(180, 180, 180, 0.3)'};
+      box-shadow:0 0 6px ${isBrightGreen ? 'rgba(50, 201, 107, 0.7)' : 'rgba(180, 180, 180, 0.4)'};
+      animation-duration:${dur}s;animation-delay:${delay}s;`;
+    container.appendChild(p);
   }
-
-  function createParticle() {
-    return {
-      x: Math.random() * canvas.width,
-      y: canvas.height + Math.random() * 100,
-      size: Math.random() * 2.5 + 0.5,
-      speedY: -(Math.random() * 0.6 + 0.15),
-      speedX: (Math.random() - 0.5) * 0.3,
-      opacity: Math.random() * 0.5 + 0.1,
-      // Mix of green and gray particles
-      color: Math.random() > 0.4
-        ? `rgba(50, 201, 107, ${Math.random() * 0.4 + 0.1})`
-        : `rgba(180, 180, 180, ${Math.random() * 0.2 + 0.05})`,
-      life: 0,
-      maxLife: Math.random() * 400 + 200
-    };
-  }
-
-  function init() {
-    resize();
-    particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const p = createParticle();
-      // Spread initial particles across the canvas
-      p.y = Math.random() * canvas.height;
-      p.life = Math.random() * p.maxLife;
-      particles.push(p);
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach((p, i) => {
-      p.x += p.speedX;
-      p.y += p.speedY;
-      p.life++;
-
-      // Fade in/out
-      let alpha = p.opacity;
-      if (p.life < 30) alpha = p.opacity * (p.life / 30);
-      if (p.life > p.maxLife - 30) alpha = p.opacity * ((p.maxLife - p.life) / 30);
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.globalAlpha = Math.max(0, alpha);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-
-      // Reset particle when it dies or goes off screen
-      if (p.life >= p.maxLife || p.y < -10) {
-        particles[i] = createParticle();
-      }
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  window.addEventListener('resize', resize);
-  init();
-  animate();
 }
 
 // Initialize particles on load
-initParticles();
-
-// ═════════════════════════════════════=
-//  SCROLL REVEAL (Intersection Observer)
-// ═════════════════════════════════════=
-function initScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        // Stagger animation slightly for grid items
-        const delay = entry.target.closest('.principles-grid, .why-grid, .announce-preview-grid, .rank-grid, .warlogs-grid, .memories-grid, .rule-items')
-          ? Array.from(entry.target.parentElement.children).indexOf(entry.target) * 80
-          : 0;
-
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, delay);
-
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
-// Run on DOM ready and after dynamic content loads
-document.addEventListener('DOMContentLoaded', initScrollReveal);
+spawnParticles();
 
 // ═════════════════════════════════════=
 //  MODAL SYSTEM
