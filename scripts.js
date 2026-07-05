@@ -40,6 +40,7 @@ const ADMIN_EMAILS = [
   "cyberelite5253@gmail.com",
   "tk.dnmx@gmail.com",
   "deriddercasper@gmail.com",
+  "trigyapazare2013@gmail.com",
 ];
 
 function isAdmin() {
@@ -937,10 +938,10 @@ function renderAnnouncementsPage(filterCategory = 'all', searchTerm = '') {
     ? ANNOUNCEMENTS
     : ANNOUNCEMENTS.filter(a => (a.category || '').toLowerCase() === filterCategory);
 
-  const finalFiltered = filtered.filter(a => 
-    !term || 
-    (a.title || '').toLowerCase().includes(term) || 
-    (a.body || '').toLowerCase().includes(term) || 
+  const finalFiltered = filtered.filter(a =>
+    !term ||
+    (a.title || '').toLowerCase().includes(term) ||
+    (a.body || '').toLowerCase().includes(term) ||
     (a.createdBy || '').toLowerCase().includes(term)
   );
 
