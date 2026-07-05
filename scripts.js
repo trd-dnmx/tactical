@@ -7,28 +7,26 @@
 // ═════════════════════════════════════=
 //  FIREBASE IMPORTS & CONFIG
 // ═════════════════════════════════════=
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js';
-import {
-  getAuth, GoogleAuthProvider, signInWithPopup,
-  signOut as firebaseSignOut, onAuthStateChanged
-} from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js';
-import {
-  getFirestore, collection, addDoc, onSnapshot, deleteDoc,
-  updateDoc, doc, serverTimestamp, query, orderBy, getDoc,
-  getDocs, setDoc, where, limit, or
-} from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, updateDoc, doc, serverTimestamp, query, orderBy, getDoc, getDocs, setDoc, where, limit } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBULCM4XITTUrxhyKrLH1fHwSWGzdBt2xw",
-  authDomain: "trd-dnmx-web.firebaseapp.com",
-  projectId: "trd-dnmx-web",
-  storageBucket: "trd-dnmx-web.firebasestorage.app",
-  messagingSenderId: "743367336796",
-  appId: "1:743367336796:web:302083b8a34c050c75d799",
-  measurementId: "G-QP3S2P403F"
+  apiKey: "AIzaSyDiog1JUoGzFpweH3Z2xoctPME7zfUgehk",
+  authDomain: "dnmx-tactical.firebaseapp.com",
+  projectId: "dnmx-tactical",
+  storageBucket: "dnmx-tactical.firebasestorage.app",
+  messagingSenderId: "42559073548",
+  appId: "1:42559073548:web:32e6aeb8c21a9b667c2d29",
+  measurementId: "G-XMLZRYCBLN"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -40,9 +38,8 @@ const ADMIN_EMAILS = [
   "tntplayertnt8@gmail.com",
   "drglass09yt@gmail.com",
   "cyberelite5253@gmail.com",
-  "budavasile6211@gmail.com",
   "tk.dnmx@gmail.com",
-  "chickendajaja@gmail.com",
+  "deriddercasper@gmail.com",
 ];
 
 function isAdmin() {
@@ -866,6 +863,10 @@ function initAnnouncementsListener() {
       ANNOUNCEMENTS.push({ id: d.id, ...d.data() });
     });
     renderHomeAnnouncements();
+    const activeChip = document.querySelector('#announceFilters .chip.active');
+    const filterCategory = activeChip?.dataset?.filter || 'all';
+    const searchInput = document.getElementById('announceSearch');
+    renderAnnouncementsPage(filterCategory, searchInput?.value || '');
   }, (error) => {
     console.error('Announcements listener error:', error);
     renderHomeAnnouncementsError();
@@ -926,6 +927,66 @@ function renderHomeAnnouncementsError() {
       <p>Please try again later.</p>
     </div>`;
 }
+
+function renderAnnouncementsPage(filterCategory = 'all', searchTerm = '') {
+  const grid = document.getElementById('announcementsGrid');
+  if (!grid) return;
+
+  const term = searchTerm.toLowerCase();
+  const filtered = filterCategory === 'all'
+    ? ANNOUNCEMENTS
+    : ANNOUNCEMENTS.filter(a => (a.category || '').toLowerCase() === filterCategory);
+
+  const finalFiltered = filtered.filter(a => 
+    !term || 
+    (a.title || '').toLowerCase().includes(term) || 
+    (a.body || '').toLowerCase().includes(term) || 
+    (a.createdBy || '').toLowerCase().includes(term)
+  );
+
+  if (finalFiltered.length === 0) {
+    grid.innerHTML = `
+      <div class="no-results" style="grid-column: 1 / -1;">
+        <div class="no-results-icon">📭</div>
+        <h3>No announcements found.</h3>
+        <p>Try adjusting your search or filters.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = finalFiltered.map(a => `
+    <div class="announce-card reveal visible" onclick="openAnnouncementDetail('${a.id}')">
+      <div class="announce-card-top">
+        <span class="announce-tag ${getCategoryTag(a.category)}">${escapeHTML((a.category || 'UPDATE').toUpperCase())}</span>
+        <span class="announce-date">${formatDate(a.createdAt)}${a.edited ? ' (edited)' : ''}</span>
+      </div>
+      <h3 class="announce-title">${escapeHTML(a.title)}</h3>
+      <p class="announce-preview">${escapeHTML(a.body)}</p>
+      <div class="announce-card-footer">
+        <span class="announce-author">
+          ${getAuthorDotHTML('', (a.createdBy || 'UN').substring(0, 2))}
+          ${escapeHTML(a.createdBy || 'Unknown')}
+        </span>
+      </div>
+    </div>
+  `).join('');
+}
+window.renderAnnouncementsPage = renderAnnouncementsPage;
+
+function filterAnnouncementsPage() {
+  const activeChip = document.querySelector('#announceFilters .chip.active');
+  const filterCategory = activeChip?.dataset?.filter || 'all';
+  const searchInput = document.getElementById('announceSearch');
+  renderAnnouncementsPage(filterCategory, searchInput?.value || '');
+}
+window.filterAnnouncementsPage = filterAnnouncementsPage;
+
+function setAnnouncePageFilter(category, el) {
+  document.querySelectorAll('#announceFilters .chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  filterAnnouncementsPage();
+}
+window.setAnnouncePageFilter = setAnnouncePageFilter;
 
 function renderFullAnnouncements(filterCategory = 'all') {
   const container = document.getElementById('announcementsOverlayContent');

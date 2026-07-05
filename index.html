@@ -7,7 +7,7 @@
   <title>DNMX Tactical Command — Operations Headquarters</title>
   <meta name="description"
     content="The elite combat division of DNMX. Forged for warfare, strategy, and battlefield supremacy. Every operation. Every victory. Every soldier." />
-  <link rel="icon" type="image/png" href="Assets/Dnmx.png" />
+  <link rel="icon" type="image/png" href="assets/Dnmx.png" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
@@ -32,6 +32,7 @@
       <li><a href="index.html" class="nav-link active">HOME</a></li>
       <li><a href="hierarchy.html" class="nav-link">HIERARCHY</a></li>
       <li><a href="rules.html" class="nav-link">RULES</a></li>
+      <li><a href="announcements.html" class="nav-link">ANNOUNCEMENTS</a></li>
       <li><a href="war logs.html" class="nav-link">WAR LOGS</a></li>
       <li><a href="memories.html" class="nav-link">MEMORIES</a></li>
     </ul>
@@ -55,6 +56,7 @@
     <a href="index.html" class="mobile-nav-link active">HOME</a>
     <a href="hierarchy.html" class="mobile-nav-link">HIERARCHY</a>
     <a href="rules.html" class="mobile-nav-link">RULES</a>
+    <a href="announcements.html" class="mobile-nav-link">ANNOUNCEMENTS</a>
     <a href="war logs.html" class="mobile-nav-link">WAR LOGS</a>
     <a href="memories.html" class="mobile-nav-link">MEMORIES</a>
     <div id="mobileAuthArea"></div>
@@ -226,28 +228,6 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════
-         ANNOUNCEMENTS PREVIEW
-    ═══════════════════════════ -->
-    <section class="announcements-preview" id="announcementsPreview">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">Intel Briefing</p>
-        <h2 class="section-title">Latest Announcements</h2>
-        <div class="section-line"></div>
-      </div>
-
-      <div class="announce-preview-grid" id="homeAnnouncementsGrid">
-        <!-- Populated by JS — shows skeleton loaders initially -->
-        <div class="skeleton skeleton-card"></div>
-        <div class="skeleton skeleton-card"></div>
-        <div class="skeleton skeleton-card"></div>
-      </div>
-
-      <div class="announce-view-all reveal">
-        <button class="btn-secondary" onclick="openAnnouncementsOverlay()">VIEW ALL ANNOUNCEMENTS</button>
-      </div>
-    </section>
-
   </main>
 
   <!-- ═══════════════════════════
@@ -264,6 +244,7 @@
         <a href="index.html">Home</a>
         <a href="hierarchy.html">Hierarchy</a>
         <a href="rules.html">Rules</a>
+        <a href="announcements.html">Announcements</a>
         <a href="war logs.html">War Logs</a>
         <a href="memories.html">Memories</a>
       </div>
@@ -335,16 +316,6 @@
     <div class="modal">
       <button class="modal-close" onclick="closeModal()" aria-label="Close modal">✕</button>
       <div id="modalContent"></div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════
-       ANNOUNCEMENTS OVERLAY
-  ═══════════════════════════ -->
-  <div class="modal-overlay" id="announcementsOverlay" onclick="closeAnnouncementsOnOverlay(event)">
-    <div class="modal" style="max-width: 900px;">
-      <button class="modal-close" onclick="closeAnnouncementsOverlay()" aria-label="Close announcements">✕</button>
-      <div id="announcementsOverlayContent"></div>
     </div>
   </div>
 

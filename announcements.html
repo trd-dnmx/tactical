@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>War Logs — DNMX Tactical Command</title>
+  <title>Announcements — DNMX Tactical Command</title>
   <meta name="description"
-    content="Every operation recorded. Browse the official DNMX Tactical Command war archives documenting victories and battles." />
+    content="Official announcements, operation orders, and updates from the DNMX Tactical Command leadership." />
   <link rel="icon" type="image/png" href="assets/Dnmx.png" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
@@ -32,8 +32,8 @@
       <li><a href="index.html" class="nav-link">HOME</a></li>
       <li><a href="hierarchy.html" class="nav-link">HIERARCHY</a></li>
       <li><a href="rules.html" class="nav-link">RULES</a></li>
-      <li><a href="announcements.html" class="nav-link">ANNOUNCEMENTS</a></li>
-      <li><a href="war logs.html" class="nav-link active">WAR LOGS</a></li>
+      <li><a href="announcements.html" class="nav-link active">ANNOUNCEMENTS</a></li>
+      <li><a href="war logs.html" class="nav-link">WAR LOGS</a></li>
       <li><a href="memories.html" class="nav-link">MEMORIES</a></li>
     </ul>
     <div class="nav-right">
@@ -52,8 +52,8 @@
     <a href="index.html" class="mobile-nav-link">HOME</a>
     <a href="hierarchy.html" class="mobile-nav-link">HIERARCHY</a>
     <a href="rules.html" class="mobile-nav-link">RULES</a>
-    <a href="announcements.html" class="mobile-nav-link">ANNOUNCEMENTS</a>
-    <a href="war logs.html" class="mobile-nav-link active">WAR LOGS</a>
+    <a href="announcements.html" class="mobile-nav-link active">ANNOUNCEMENTS</a>
+    <a href="war logs.html" class="mobile-nav-link">WAR LOGS</a>
     <a href="memories.html" class="mobile-nav-link">MEMORIES</a>
     <div id="mobileAuthArea"></div>
   </div>
@@ -65,43 +65,46 @@
       <div class="page-hero-bg"></div>
       <div class="page-hero-grid"></div>
       <div class="page-hero-content">
-        <span class="page-hero-tag">OPERATION ARCHIVES</span>
-        <h1 class="page-hero-title">War Logs</h1>
-        <p class="page-hero-subtitle">The official record of every tactical engagement fought under the DNMX banner.
-          Every victory celebrated, every battle documented.</p>
+        <span class="page-hero-tag">INTEL BRIEFINGS</span>
+        <h1 class="page-hero-title">Announcements</h1>
+        <p class="page-hero-subtitle">Official communications from Tactical Command leadership regarding operations, events, recruitment, and decrees.</p>
       </div>
     </div>
 
-    <!-- WAR LOGS SECTION -->
-    <div class="warlogs-section">
+    <!-- ANNOUNCEMENTS SECTION -->
+    <div class="memories-section">
 
       <!-- CONTROLS -->
-      <div class="warlogs-controls">
-        <div class="search-wrap" style="flex:1;min-width:200px;">
+      <div class="announce-controls" style="display:flex;flex-direction:column;gap:20px;max-width:1300px;margin:0 auto 30px auto;padding:0 40px;">
+        <div class="search-wrap" style="width:100%;">
           <span class="search-icon">🔍</span>
-          <input type="text" id="warLogSearch" placeholder="Search war logs..." aria-label="Search war logs" />
+          <input type="text" id="announceSearch" placeholder="Search announcements..." aria-label="Search announcements" oninput="window.filterAnnouncementsPage()" />
         </div>
-        <div class="filter-chips" id="warLogFilters">
-          <button class="chip active" data-filter="all" onclick="setWarLogFilter('all')">ALL</button>
-          <button class="chip" data-filter="won" onclick="setWarLogFilter('won')">WON</button>
-          <button class="chip" data-filter="lost" onclick="setWarLogFilter('lost')">LOST</button>
+        
+        <div class="filter-chips" id="announceFilters" style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="chip active" data-filter="all" onclick="window.setAnnouncePageFilter('all', this)">ALL</button>
+          <button class="chip" data-filter="updates" onclick="window.setAnnouncePageFilter('updates', this)">UPDATES</button>
+          <button class="chip" data-filter="events" onclick="window.setAnnouncePageFilter('events', this)">EVENTS</button>
+          <button class="chip" data-filter="alerts" onclick="window.setAnnouncePageFilter('alerts', this)">ALERTS</button>
+          <button class="chip" data-filter="recruitment" onclick="window.setAnnouncePageFilter('recruitment', this)">RECRUITMENT</button>
+          <button class="chip" data-filter="decrees" onclick="window.setAnnouncePageFilter('decrees', this)">DECREES</button>
         </div>
       </div>
 
-      <!-- WAR LOGS GRID -->
-      <div class="warlogs-grid" id="warLogsGrid">
+      <!-- ANNOUNCEMENTS GRID -->
+      <div class="announce-preview-grid" id="announcementsGrid" style="max-width:1300px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(auto-fill, minmax(350px, 1fr));gap:24px;">
         <!-- Skeleton loaders -->
-        <div class="skeleton skeleton-card" style="height:280px;"></div>
-        <div class="skeleton skeleton-card" style="height:280px;"></div>
-        <div class="skeleton skeleton-card" style="height:280px;"></div>
+        <div class="skeleton skeleton-card" style="height:220px;"></div>
+        <div class="skeleton skeleton-card" style="height:220px;"></div>
+        <div class="skeleton skeleton-card" style="height:220px;"></div>
       </div>
 
     </div>
   </main>
 
   <!-- FAB (Admin Only) -->
-  <div class="fab">
-    <button onclick="openCreateWarLogModal()">+ CREATE LOG</button>
+  <div class="fab" style="display: none;">
+    <button onclick="openNewAnnouncementModal()">+ NEW ANNOUNCEMENT</button>
   </div>
 
   <!-- FOOTER -->
@@ -116,6 +119,7 @@
         <a href="index.html">Home</a>
         <a href="hierarchy.html">Hierarchy</a>
         <a href="rules.html">Rules</a>
+        <a href="announcements.html">Announcements</a>
         <a href="war logs.html">War Logs</a>
         <a href="memories.html">Memories</a>
       </div>
